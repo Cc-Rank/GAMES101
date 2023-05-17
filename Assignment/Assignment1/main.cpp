@@ -27,20 +27,20 @@ Eigen::Matrix4f get_model_matrix(float rotation_angle)
     // TODO: Implement this function
     // Create the model matrix for rotating the triangle around the Z axis.
     // Then return it.
-    float myTheta = rotation_angle / 180.0 * MY_PI;
+    float alpha = rotation_angle / 180.0 * MY_PI;
     Eigen::Matrix4f rotationX, rotationY, rotationZ;
     rotationX << 1, 0, 0, 0,
-                0, cos(myTheta), -sin(myTheta), 0,
-                0, sin(myTheta), cos(myTheta), 0,
+                0, cos(alpha), -sin(alpha), 0,
+                0, sin(alpha), cos(alpha), 0,
                 0, 0, 0, 1;
 
-    rotationY << cos(myTheta), 0, sin(myTheta), 0,
+    rotationY << cos(alpha), 0, sin(alpha), 0,
                 0, 1, 0, 0,
-                -sin(myTheta), 0, cos(myTheta), 0,
+                -sin(alpha), 0, cos(alpha), 0,
                 0, 0, 0, 1;
 
-    rotationZ << cos(myTheta), -sin(myTheta), 0, 0, 
-                sin(myTheta), cos(myTheta), 0, 0,
+    rotationZ << cos(alpha), -sin(alpha), 0, 0, 
+                sin(alpha), cos(alpha), 0, 0,
                 0, 0, 1, 0, 
                 0, 0, 0, 1;
 
@@ -95,19 +95,17 @@ Eigen::Matrix4f get_rotation(Vector3f anis, float angle)
     Eigen::Matrix4f rotation = Eigen::Matrix4f::Identity();
     Eigen::Matrix3f I = Eigen::Matrix3f::Identity();
 
-    Eigen::Matrix3f R1, R2, R3, N, temp;
+    Eigen::Matrix3f R1, R2, R3, N;
     N << 0, -anis[2], anis[1],
         anis[2], 0, -anis[0],
         -anis[1], anis[0], 0;
 
-    float myTheta = angle / 180.0 * MY_PI;
-    R1 = cos(myTheta) * I;
-    R2 = anis * anis.transpose();
-    R2 = (1 - cos(myTheta)) * R2;
-    R3 = sin(myTheta) * N;
+    float alpha = angle / 180.0 * MY_PI;
+    R1 = cos(alpha) * I;
+    R2 = anis * anis.transpose() * (1 - cos(alpha));
+    R3 = sin(alpha) * N;
 
-    temp = R1 + R2 + R3;
-    rotation.topLeftCorner(3, 3) = temp;
+    rotation.topLeftCorner(3, 3) = R1 + R2 + R3;
 
     return rotation;
 }
