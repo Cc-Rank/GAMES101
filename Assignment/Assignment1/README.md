@@ -49,13 +49,42 @@ Created by Ccrank on 5/17/23.
 Affine map = linear map + translation
 
 $$
-\begin{pmatrix}x' \\ y' \end{pmatrix} = \begin{pmatrix}a & b \\ c & d \end{pmatrix} \cdot \begin{pmatrix}x \\ y \end{pmatrix} + \begin{pmatrix}t_x \\ t_y \end{pmatrix}
+\begin{pmatrix}
+x' \\
+y'
+\end{pmatrix} =
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix} \cdot
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix} +
+\begin{pmatrix}
+t_x \\
+t_y
+\end{pmatrix}
 $$
 
 Using homogenous coordinates:
 
 $$
-\begin{pmatrix}x' \\ y' \\ 1 \end{pmatrix} = \begin{pmatrix}a & b & t_x \\ c & d &t_y \\ 0 & 0 & 1 \end{pmatrix} \cdot \begin{pmatrix}x \\ y \\ 1 \end{pmatrix}
+\begin{pmatrix}
+x' \\
+y' \\
+1
+\end{pmatrix} =
+\begin{pmatrix}
+a & b & t_x \\
+c & d &t_y \\
+0 & 0 & 1
+\end{pmatrix} \cdot
+\begin{pmatrix}
+x \\
+y \\
+1
+\end{pmatrix}
 $$
 
 > 从这里也可以看出在仿射变换中，是先完成线性变换，然后再进行平移操作的。
@@ -63,13 +92,25 @@ $$
 #### Scale
 
 $$
-S(s_x, s_y, s_z) = \begin{pmatrix}s_x & 0 & 0 & 0 \\ 0 & s_x & 0 & 0 \\ 0 & 0 & s_z & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}
+S(s_x, s_y, s_z) =
+\begin{pmatrix}
+s_x & 0 & 0 & 0 \\
+0 & s_x & 0 & 0 \\
+0 & 0 & s_z & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
 $$
 
 #### Translation
 
 $$
-T(t_x, t_y, t_z) = \begin{pmatrix}1 & 0 & 0 & t_x \\ 0 & 1 & 0 & t_y \\ 0 & 0 & 1 & t_z \\ 0 & 0 & 0 & 1 \end{pmatrix}
+T(t_x, t_y, t_z) =
+\begin{pmatrix}
+1 & 0 & 0 & t_x \\
+0 & 1 & 0 & t_y \\
+0 & 0 & 1 & t_z \\
+0 & 0 & 0 & 1
+\end{pmatrix}
 $$
 
 #### Rotation around x-, y-, or z-axis
@@ -143,9 +184,9 @@ $$
 
 首先定义相机：
 
-- Position $\; \vec{e}$
-- Look-at / gaze direction $\hat{g}$
-- Up direction $\hat{t}$
+- Position $\, \vec{e}$
+- Look-at / gaze direction $\, \hat{g}$
+- Up direction $\, \hat{t}$
 
 那么：
 
@@ -161,8 +202,8 @@ x_t & y_t & z_t & 0   \\
 x_{-g} & y_{-g} & z_{-g} & 0     \\
 0 & 0 & 0 & 1
 \end{bmatrix}
-\;\;\;\;
-T_{view} = 
+\quad \quad
+T_{view} =
 \begin{bmatrix}
 1 & 0 & 0 & -x_e   \\
 0 & 1 & 0 & -y_e   \\
@@ -200,7 +241,7 @@ M_{ortho} =
 0 & 0 & \frac{2}{n - f} & -\frac{n + f}{2}     \\
 0 & 0 & 0 & 1
 \end{pmatrix}
-\;\;\;\;
+\quad \quad
 M_{persp \rightarrow ortho} =
 \begin{pmatrix}
 n & 0 & 0 & 0   \\
@@ -246,7 +287,7 @@ Eigen::Matrix4f get_rotation(Vector3f anis, float angle)
 
 ### 结果
 
-<img src="build/image.png" width = "45%" ><img src="build/output.png" width = "45%" >
+<img src="build/image.png" width = "45%" > $\quad \quad$ <img src="build/output.png" width = "45%" >
 
 ## 遇到的问题
 
@@ -372,4 +413,4 @@ t.setColor(2, 0.0  ,  0.0,255.0);
 rasterize_wireframe(t);
 ```
 
-在光栅化线框的函数中，调用了 `draw_line(Vector3f begin, Vector3f end)` 函数来绘制连线，这里使用[Bresenham's算法](https://en.wikipedia.org/wiki/Bresenham's_line_algorithm)来画线，代码作者也指出该算法代码来自于Stack Overflow中的一则[答案](https://stackoverflow.com/a/16405254)。
+在光栅化线框的函数中，调用了 `draw_line(Vector3f begin, Vector3f end)` 函数来绘制连线，该函数使用[Bresenham's算法](https://en.wikipedia.org/wiki/Bresenham's_line_algorithm)来画线，代码作者也指出该算法代码来自于Stack Overflow中的一则[答案](https://stackoverflow.com/a/16405254)。
