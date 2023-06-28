@@ -184,9 +184,9 @@ $$
 
 首先定义相机：
 
-- Position $\, \vec{e}$
-- Look-at / gaze direction $\, \hat{g}$
-- Up direction $\, \hat{t}$
+- Position $\quad \vec{e}$
+- Look-at / gaze direction $\quad \hat{g}$
+- Up direction $\quad \hat{t}$
 
 那么：
 
@@ -218,14 +218,14 @@ $$
 
 **P transformation** 是将观察空间转换为裁剪空间。即将空间中的对象，转换到摄像机所能拍摄到的屏幕中。
 
-<div align="center"> 
+<div align="center">
     <img src="build/ProjectionTransformation.png" width = "85%" >
 </div>
 
 在透视投影（Perspective Projection）中：
 
-- 首先将这六面体“挤（squish）”进长方体中（n $\rightarrow$ n, f $\rightarrow$ n）（$M_{persp \rightarrow ortho}$）
-- 然后做一个正交投影（$M_{ortho}$），将这个长方体映射到坐标原点的正方体（"canonical" cube $[-1, 1]^3$）。
+- 首先将这六面体“挤（squish）”进长方体中（n $\rightarrow$ n, f $\rightarrow$ n）（ $M_{persp \rightarrow ortho}$ ）
+- 然后做一个正交投影（ $M_{ortho}$ ），将这个长方体映射到坐标原点的正方体（"canonical" cube $[-1, 1]^3$）。
 
 那么以右手系为例：
 
@@ -307,7 +307,7 @@ Eigen::Matrix4f get_rotation(Vector3f anis, float angle)
 
 该文件中的关键内容就是上面我们填写的各种矩阵。`main()` 函数中的代码主要是加载顶点缓冲区和索引缓冲区，这里涉及到一些渲染管线的内容，将在后面的作业中提及，同时还有处理键盘消息以实现旋转。
 
-此外，帧缓冲区中的内容通过调用 OpenCV 库中的 API 来绘制到屏幕上，详细内容参见[官方文档](https://opencv.apachecn.org/#/)：
+此外，帧缓冲区中的内容通过调用 OpenCV 库中的 API 来绘制到屏幕上。这里首先用 `Mat` 构造一个 `image`，`r.frame_buffer().data()` 返回指向 `frame_buffer` 第一个元素的地址。然后将 32 位 3 通道 `float` 类型转换为 8 位 3 通道 `unsigned` 类型。最后 `imshow()` 完成图片的显示。更多详细内容参见[官方文档](https://opencv.apachecn.org/#/)：
 
 ```cpp
 cv::Mat image(700, 700, CV_32FC3, r.frame_buffer().data());
