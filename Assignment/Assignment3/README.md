@@ -32,9 +32,11 @@ Blinn-Phong 模型，又称为 Blinn-phong 反射模型（Blinn–Phong reflecti
 
 ```cpp
     Eigen::Vector3f point = payload.view_pos;
+    Eigen::Vector3f normal = payload.normal;
+    Eigen::Vector3f l = (light.position - point).normalized();
+
     Eigen::Vector3f kd = payload.color;
     Eigen::Vector3f energyAtShadingPoint = light.intensity / (light.position - point).dot(light.position - point);
-    Eigen::Vector3f l = (light.position - point).normalized();
     auto Ld = kd.cwiseProduct(energyAtShadingPoint) * std::max(0.0f, normal.dot(l));
 ```
 
@@ -49,7 +51,7 @@ Phong 模型中认为，高光反射的强度与反射光线 $R$ 和观察角度
 $$
 \begin{aligned}
 L_s &= k_s(I / r^2) \max{(0, \cos{\alpha})^{p}} \\
-    &= asd
+    &= k_s(I / r^2) \max{(0, v \cdot R)}
 \end{aligned}
 $$
 
@@ -62,10 +64,13 @@ Blinn 针对 Phong 模型的高光项的计算提出了改进，提出了半程�
 通常，高光系数 $k_s$ 是预先定义好的常数， $p$ 通常取值为 32。
 
 ```cpp
-    Eigen::Vector3f ks = Eigen::Vector3f(0.7937, 0.7937, 0.7937);
+    Eigen::Vector3f point = payload.view_pos;
+    Eigen::Vector3f normal = payload.normal;
     Eigen::Vector3f l = (light.position - point).normalized();
     Eigen::Vector3f v = (eye_pos - point).normalized();
     Eigen::Vector3f h = (l + v).normalized();
+
+    Eigen::Vector3f ks = Eigen::Vector3f(0.7937, 0.7937, 0.7937);
     Eigen::Vector3f energyAtShadingPoint = light.intensity / (light.position - point).dot(light.position - point);
     auto Ls = ks.cwiseProduct(energyAtShadingPoint) * std::pow(std::fmax(0.0f, normal.dot(h)), p);
 ```
@@ -84,3 +89,9 @@ Blinn 针对 Phong 模型的高光项的计算提出了改进，提出了半程�
     Eigen::Vector3f amb_light_intensity{10, 10, 10};
     auto La = ka.cwiseProduct(amb_light_intensity);
 ```
+
+## Reference
+
+[1] [GAMES101-现代计算机图形学入门](https://www.bilibili.com/video/BV1X7411F744/?p=8&share_source=copy_web&vd_source=0010cd145c4589a828366dd2f6c17219) - 闫令琪
+
+[2] [Blinn-Phong光照模型从定义到实现](https://zhuanlan.zhihu.com/p/442023993) - Ruyi Y的文章 - 知乎
