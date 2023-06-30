@@ -179,8 +179,8 @@ $$
 
 重心坐标 $(\alpha, \beta, \gamma)$ 是由三角形顶点定义的坐标：
 
-- 三角形上的任一顶点 $(x,y)$ 都可以表示为三角形三个顶点的线性组合：$(x, y) = \alpha A + \beta A + \gamma c$ ；
-- 且系数之和为 1：$\alpha + \beta + \gamma = 1$ (只有系数之和为 1，点才在这个三角形所在的平面上)；
+- 三角形上的任一顶点 $(x,y)$ 都可以表示为三角形三个顶点的线性组合： $(x, y) = \alpha A + \beta A + \gamma c$ ；
+- 且系数之和为 1： $\alpha + \beta + \gamma = 1$ (只有系数之和为 1，点才在这个三角形所在的平面上)；
 - 当满足三个系数都为非负数时，该点在三角形内部，反之，该点在三角形外；
 - 可以看出，重心坐标是齐次坐标的一种。
 
@@ -190,7 +190,7 @@ $$
 
 <div align="center"><img src="./Assets/Proportional_Areas.png" width = "65%" ></div>
 
-这里的 $A_A$ 、$A_B$ 、$A_C$ 分别表示三个小三角形的面积。
+这里的 $A_A$ 、 $A_B$ 、 $A_C$ 分别表示三个小三角形的面积。
 
 三角形内每一个点都有它的重心坐标，换句话说重心坐标其实是三角形内的点换了一个重心坐标系来表示该点的方法。特别的，三角形的重心也有它的重心坐标 $(\alpha, \beta, \gamma) = (\frac{1}{3}, \frac{1}{3}, \frac{1}{3})$ 。三角形的重心坐标将该三角形分成了三个面积相等的三角形，所以坐标都是 $\frac{1}{3}$。
 
@@ -214,6 +214,8 @@ static std::tuple<float, float, float> computeBarycentric2D(float x, float y, co
 
 需要注意的是，重心坐标存在一个**问题**：三角形在投影变换下，是不能保证重心坐标不变的。因此，如果想要插值三维空间中的属性，需要将三角形变换到三维空间中，在对其进行重心坐标插值。
 
+<div align="center"><img src="./Assets/texture_output.png" width = "45%" ></div>
+
 在完成了屏幕中的 Pixel 与纹理中的 Texel 的插值映射之后，接下需要解决的是纹理自身的问题。如果纹理精度特别小或者纹理精度特别大的情况下，该如何获得更好的着色效果。
 
 ### 双线性插值 Bilinear Interpolation
@@ -222,9 +224,9 @@ static std::tuple<float, float, float> computeBarycentric2D(float x, float y, co
 
 假设当前采样的像素被映射到纹理坐标中的红点位置，其插值过程具体如下：
 
-1. 取离它最近的四个采样位置 $u_{00}, u_{01}, u_{10}, u_{11}$ ；
+1. 取离它最近的四个采样位置 $u_{00}$， $u_{01}$， $u_{10}$， $u_{11}$ ；
 2. 计算四个采样位置间的偏移量水平距离 $s$ 和 竖直距离 $t$ ，假设这两个偏移量取值范围为 $[0, 1]$ ;
-3. 首先对水平/竖直距离进行两次线性插值得到辅助点 $u_0, u_1$
+3. 首先对水平/竖直距离进行两次线性插值得到辅助点 $u_0$， $u_1$
    - $u_0 = lerp(s, u_00, u_10)$
    - $u_1 = lerp(s, u_01, u_11)$
 4. 最后再在竖直/水平方向上对辅助点 $u_0, u_1$ 做一次线性插值得到最终结果
@@ -232,7 +234,7 @@ static std::tuple<float, float, float> computeBarycentric2D(float x, float y, co
 
 <div align="center"><img src="./Assets/Bilinear_Interpolation.png" width = "65%" ></div>
 
-除了双线性差值可以处理纹理小但几何大的情况，双立方(Bicubic)插值也可以改善该问题，效果比双线性插值还要好，但计算量大。他的主要思想是取周围 16 个纹素取平均，而每次操作用 4 个纹素做三次插值（非线性的）。
+除了双线性差值可以处理纹理小但几何大的情况，双立方（Bicubic）插值也可以改善该问题，效果比双线性插值还要好，但计算量大。他的主要思想是取周围 16 个纹素取平均，而每次操作用 4 个纹素做三次插值（非线性的）。
 
 ### Mipmap
 
@@ -272,11 +274,11 @@ Mipmap 允许我们做快速地、近似地、方形的范围查询，其主要�
 
 各向异性过滤**部分**解决了这个问题。它生成的（Ripmaps）以额外三倍的存储占用，解决了上图中轴对齐的矩形区域的采样问题。但是，对于对角线对齐的区域，仍然无法很好的解决。
 
-### 环境贴图 Environment Map
+### 环境映射 Environment Mapping
 
 TODO
 
-### 凹凸/法线贴图 Bump / Normal Mapping
+### 凹凸/法线映射 Bump / Normal Mapping
 
 <div align="center"><img src="./Assets/bump_output.png" width = "45%" ></div>
 
