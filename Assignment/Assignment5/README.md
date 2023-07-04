@@ -1,5 +1,7 @@
 # Ray Tracing 光线追踪
 
+![Ray Tracing](./Assets/Ray_Tracing_Result.png "Ray Tracing")
+
 光线追踪（Ray Tracing）相比于光栅化（Rasterization）是一种更为准确的渲染方法，但其主要问题是很慢。通常，光栅化是用来做实时渲染的，而光线追踪通常被用来进行离线渲染。
 
 在之前的光栅化实现渲染的过程中，有很多全局效果的表现是很难处理的，比如软阴影、Glossy 材质物体的反射以及间接光照等。而光线追踪正是为了解决这种问题所提出的一种考虑全局效果的光照模型。
