@@ -50,7 +50,7 @@
 
 光线首先从被定义坐标为 $(0, 0, 0)$ 的相机出发（在几乎所有 3D 应用程序中，创建照相机时的默认位置是世界的原点）。按照惯例（OpenGL），在光线追踪中成像平面与场景位于同一侧，且通常放置在距离相机原点正好 1 个单位的位置。此外，还默认相机看向 $z$ 轴负方向。
 
-然而，需要被写入着色信息的像素是被定义在屏幕空间中的，而屏幕的分辨率通常与成像平面（image plane）不同， 屏幕空间被定义为以左上角为坐标原点，向右X坐标增加，向下Y轴增加。如图是一个 $width = 6, height = 6$ 的屏幕空间，且像素的中心相对于像素点会有 0.5 的偏移。因此，需要将屏幕中的像素坐标转换为屏幕空间中的坐标。
+然而，需要被写入着色信息的像素是被定义在屏幕空间中的，而屏幕的分辨率通常与成像平面（image plane）不同， 屏幕空间被定义为以左上角为坐标原点，向右 $x$ 坐标增加，向下 $y$ 轴增加。如图是一个 $width = 6, height = 6$ 的屏幕空间，且像素的中心相对于像素点会有 0.5 的偏移。因此，需要将屏幕中的像素坐标转换为屏幕空间中的坐标。
 
 <div align="center"><img src="./Assets/Screen2NDC_Space.png" width = "85%" ></div>
 
@@ -116,25 +116,25 @@ for (int j = 0; j < scene.height; ++j)
 光线，在数学上的定义是一个简单的射线，有一个起点和一个方向：
 
 $$
-\bm{r}(t) = \bm{o} + t\bm{d}  \quad \quad 0 \leq t < \infty \tag{1}
+\pmb{r}(t) = \pmb{o} + t\pmb{d}  \quad \quad 0 \leq t < \infty \tag{1}
 $$
 
-其中， $\bm{o}$ 表示光线的起点， $\bm{d}$ 为光线的方向向量，由于光线被认为是射线，因此 $t$ 是一个非负实数。
+其中， $\boldsymbol{o}$ 表示光线的起点， $\boldsymbol{d}$ 为光线的方向向量，由于光线被认为是射线，因此 $t$ 是一个非负实数。
 
 ### 3.1. 光线与隐式曲面求交
 
 首先是如何计算光线与隐式曲面的交点的方法，以一个球体为例：
 
 $$
-Sphere: \quad (\bm{p} - \bm{c})^2 - R^2 = 0 \tag{2}
+Sphere: \quad (\boldsymbol{p} - \boldsymbol{c})^2 - R^2 = 0 \tag{2}
 $$
 
-对于一个球体来说，其表面上所有点 $\bm{p}$, 到圆心 $\bm{c}$ 的距离是固定为 R 的， 也就得到了上述的球的隐式曲面方程。
+对于一个球体来说，其表面上所有点 $\boldsymbol{p}$, 到圆心 $\boldsymbol{c}$ 的距离是固定为 R 的， 也就得到了上述的球的隐式曲面方程。
 
 在一个点即满足光线方程，又满足球体方程的时候，这个点就是交点。因此，联立 $(1)(2)$ 有：
 
 $$
-(\bm{o} + t\bm{d} - \bm{c})^2 - R^2 = 0 \tag{3}
+(\boldsymbol{o} + t\boldsymbol{d} - \boldsymbol{c})^2 - R^2 = 0 \tag{3}
 $$
 
 上式可以表示为：
@@ -142,9 +142,9 @@ $$
 $$
 \begin{aligned}
 at^2 &+ bt + c = 0 , \quad where\\
-a &= \bm{d} \cdot \bm{d} \\
-b &= 2(\bm{o} - \bm{c}) \cdot \bm{d} \\
-c &= (\bm{o} - \bm{c}) \cdot (\bm{o} - \bm{c}) - R^2 \\
+a &= \boldsymbol{d} \cdot \boldsymbol{d} \\
+b &= 2(\boldsymbol{o} - \boldsymbol{c}) \cdot \boldsymbol{d} \\
+c &= (\boldsymbol{o} - \boldsymbol{c}) \cdot (\boldsymbol{o} - \boldsymbol{c}) - R^2 \\
 t &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 \end{aligned}
 $$
@@ -153,8 +153,8 @@ $$
 
 $$
 \begin{aligned}
-& General \; implicit \; surface: \quad f(\bm{p}) = 0 \\
-& Substitute \; ray \; equation:  \quad f(\bm{o} + t\bm{d}) = 0
+& General \; implicit \; surface: \quad f(\boldsymbol{p}) = 0 \\
+& Substitute \; ray \; equation:  \quad f(\boldsymbol{o} + t\boldsymbol{d}) = 0
 \end{aligned}
 $$
 
@@ -169,17 +169,17 @@ $$
 首先，需要知道光线和平面的数学定义。光线的定义有前文 $(1)$，而**平面**被定义为一个法线向量和在平面上的任意一点，平面公式有：
 
 $$
-(\bm{p} - \bm{p^\prime}) \cdot \bm{N} = 0 \tag{4}
+(\boldsymbol{p} - \boldsymbol{p^\prime}) \cdot \boldsymbol{N} = 0 \tag{4}
 $$
 
-这个公式意味着，平面的任意一点 $\bm{p}$ 与 $\bm{p^\prime}$ 连成的向量与平面的法线 $\bm{N}$ 垂直。
+这个公式意味着，平面的任意一点 $\boldsymbol{p}$ 与 $\boldsymbol{p^\prime}$ 连成的向量与平面的法线 $\boldsymbol{N}$ 垂直。
 
-联立 $(1)(4)$ ，设 $\bm{p} = \bm{r}(t)$ 并求 $t$ 有：
+联立 $(1)(4)$ ，设 $\boldsymbol{p} = \boldsymbol{r}(t)$ 并求 $t$ 有：
 
 $$
 \begin{aligned}
-(\bm{p} - \bm{p^\prime}) \cdot \bm{N} = (\bm{o} + t\bm{d} - \bm{p^\prime}) \cdot \bm{N} = 0 \\
-t = \frac{(\bm{p^\prime} - \bm{o}) \cdot \bm{N}}{\bm{d} \cdot \bm{N}} \quad Check: 0 \leq t < \infty
+(\boldsymbol{p} - \boldsymbol{p^\prime}) \cdot \boldsymbol{N} = (\boldsymbol{o} + t\boldsymbol{d} - \boldsymbol{p^\prime}) \cdot \boldsymbol{N} = 0 \\
+t = \frac{(\boldsymbol{p^\prime} - \boldsymbol{o}) \cdot \boldsymbol{N}}{\boldsymbol{d} \cdot \boldsymbol{N}} \quad Check: 0 \leq t < \infty
 
 \end{aligned}
 $$
