@@ -180,7 +180,6 @@ $$
 \begin{aligned}
 (\boldsymbol{p} - \boldsymbol{p^\prime}) \cdot \boldsymbol{N} = (\boldsymbol{o} + t\boldsymbol{d} - \boldsymbol{p^\prime}) \cdot \boldsymbol{N} = 0 \\
 t = \frac{(\boldsymbol{p^\prime} - \boldsymbol{o}) \cdot \boldsymbol{N}}{\boldsymbol{d} \cdot \boldsymbol{N}} \quad Check: 0 \leq t < \infty
-
 \end{aligned}
 $$
 
