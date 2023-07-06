@@ -158,7 +158,7 @@ $$
 \end{aligned}
 $$
 
-### 3.2. 光线与显示曲面求交
+### 3.2. 光线与显式平面求交
 
 真正在图形学中大量运用的其实是显式曲面，更具体来说就是许许多多个三角形，因此如何判断一条光线与显式曲面的交点，其实也就是计算光线与三角形面的交点。
 
@@ -189,18 +189,44 @@ $$
 
 ![Moller Trumbore](./Assets/Moller_Trumbore.png "Moller Trumbore")
 
-## 4. 反射与折射
+代码实现有：
+
+```cpp
+bool rayTriangleIntersect(const Vector3f& v0, const Vector3f& v1, const Vector3f& v2, 
+    const Vector3f& orig, const Vector3f& dir, float& tnear, float& u, float& v)
+{
+    // Implement this function that tests whether the triangle
+    // that's specified bt v0, v1 and v2 intersects with the ray (whose
+    // origin is *orig* and direction is *dir*)
+    // Also don't forget to update tnear, u and v.
+    Vector3f E_1 = v1 - v0, E_2 = v2 - v0, S = orig - v0;
+    Vector3f S_1 = crossProduct(dir, E_2), S_2 = crossProduct(S, E_1);
+
+    float divisor = dotProduct(S_1, E_1);
+    tnear = dotProduct(S_2, E_2) / divisor;
+    u = dotProduct(S_1, S) / divisor;
+    v = dotProduct(S_2, dir) / divisor;
+
+    return tnear > 0 && u > 0 && v > 0 && (1.f - u - v) > 0;
+}
+```
+
+## 4. 加速光线追踪
+
+真实的渲染场景往往是复杂的，一个场景甚至包含上亿个三角形。以常用的 1920 * 1080 分辨率为例，每个像素通常都需要发射出许多光线，而如果每根光线都要和每一个三角形判断求交，这计算量是难以想象的。这就需要对求交过程进行加速，下一篇文章 [加速光线追踪](https://github.com/Cc-Rank/GAMES101/blob/main/Assignment/Assignment6/README.md) 将详细介绍如何对这些计算过程进行加速。
+
+## 5. 反射与折射
 
 TODO
 
-### 4.1. 反射方向的计算
+### 5.1. 反射方向的计算
 
 TODO
 
-### 4.2. 折射方向的计算
+### 5.2. 折射方向的计算
 
 TODO
 
-### 4.3. 菲涅耳项(Fresnel Term)
+### 5.3. 菲涅耳项(Fresnel Term)
 
 TODO
