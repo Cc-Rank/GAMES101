@@ -1,6 +1,6 @@
 # Accelerating Ray-Surface Intersection
 
-![Ray Tracing](./Assets/Stanford_Bunny.png "Ray Tracing")
+![StanfordBunny](./Assets/Stanford_Bunny.png "Stanford Bunny")
 
 真实的渲染场景往往是复杂的，一个场景甚至包含上亿个三角形。在 Whitted-Style 光线追踪中，以常用的 1920 * 1080 分辨率为例，每个像素通常都需要发射出许多光线，而如果每根光线都要和每一个三角形判断求交，这计算量是难以想象的。
 
