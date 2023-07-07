@@ -58,7 +58,7 @@ $$
   
     如果 $t1, t2, t3$ 同号（同正或者同负），那么 P 在三角形内部，否则在外部。
 
-<div align="center"><img src="build/inside.png" width = "55%" ></div>
+<div align="center"><img src="./src/build/inside.png" width = "55%" ></div>
 
 当有了 inside triangle 函数之后，只需要遍历每一个点就可以得出三角形的光栅化结果了.当然还可以进一步的进行优化，因为显然并没有必要去测试屏幕中的每一个点，一个三角形面可能只占屏幕很小的部分，可以利用一个 axis-aligned bounding box(AABB) 包围住想要测试的三角形，简单地遍历三角形的 AABB 即可完成对三角形的采样：
 
@@ -70,7 +70,7 @@ for (int x = xmin; x < xmax; ++x)
 
 由于三角形在三维空间中是一个连续的，但在完成采样之后，最终显示在屏幕上的却是一个离散的由像素组成的二维数组。所以判断一个点到底没有被某个像素覆盖的时候单纯是一个“有”或者“没有"问题，丢失了连续性的信息，这就导致了锯齿（Jaggies），也叫走样（Aliasing）。
 
-<div align="center"><img src="build/sample.png" width = "85%" ></div>
+<div align="center"><img src="./src/build/sample.png" width = "85%" ></div>
 
 这种问题本质是因为在采样的时候的频率过低而丢失了高频部分的信息，导致最后结果的失真，当然这是从信号处理的角度去看这个问题，详细信息可以参考闫老师的视频。为了解决这个问题，通常有两种选项。第一种是增加采样频率，这本质上是增加了傅里叶域中副本之间的距离
 ，但这通常需要更高的分辨率和更高的成本。第二种是反走样（Anti-aliasing），也就是抗锯齿，这主要是在发生重叠前使傅里叶内容“变窄”，即在采样前过滤掉高频信息。

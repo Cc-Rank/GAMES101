@@ -219,7 +219,7 @@ $$
 **P transformation** 是将观察空间转换为裁剪空间。即将空间中的对象，转换到摄像机所能拍摄到的屏幕中。
 
 <div align="center">
-    <img src="build/ProjectionTransformation.png" width = "85%" >
+    <img src="./src/build/ProjectionTransformation.png" width = "85%" >
 </div>
 
 在透视投影（Perspective Projection）中：
@@ -287,7 +287,7 @@ Eigen::Matrix4f get_rotation(Vector3f anis, float angle)
 
 ### 结果
 
-<img src="build/image.png" width = "45%" > $\quad \quad$ <img src="build/output.png" width = "45%" >
+<img src="./src/build/image.png" width = "45%" > $\quad \quad$ <img src="./src/build/output.png" width = "45%" >
 
 ## 遇到的问题
 
@@ -295,11 +295,11 @@ Eigen::Matrix4f get_rotation(Vector3f anis, float angle)
 2. Eigen 库使用问题：Eigen是课程代码框架中使用的线性代数运算库，常常使用在游戏开发领域。详细内容可以参考其[官方文档](https://eigen.tuxfamily.org/)。
 3. 倒三角问题：由于课程代码框架中 `r.set_projection(get_projection_matrix(45, 1, 0.1, 50));` 给出的参数 `zNear` 和 `zFar` 均为正数。经过 $M, V$ 矩阵变换之后，摄像机的 $z$ 坐标为 $0$，三角形的 $z$ 坐标为 $-2$。这里三角形并不在 `zNear` 和 `zFar` 表示的视锥范围内，因此最终结果显示的三角形会产生不符合预期的结果。
 
-<div align="center"><img src="build/InvertedTriangle.png" width = "45%" ></div>
+<div align="center"><img src="./src/build/InvertedTriangle.png" width = "45%" ></div>
 
 如上图所示，黄色箭头所指向的对象，应当在视锥范围内才能够被正确渲染在屏幕上。因此，最简单的解决方案便是将课程框架代码中的参数 `zNear` 和 `zFar` 修改为 `-0.1` 和 `-50`，得到下图所示的效果。
 
-<div align="center"><img src="build/NormalTriangle.png" width = "45%" ></div>
+<div align="center"><img src="./src/build/NormalTriangle.png" width = "45%" ></div>
 
 ## 代码框架分析
 
