@@ -147,6 +147,8 @@ $$
 
 <div align="center"><img src="./Assets/SAH.png" width = "75%" ></div>
 
+在最后我的渲染实验中（以渲染 Stanford Bunny 为例），SAH 在构建的过程中要比 BVH 耗时更长，约 5s ~ 9s。对于渲染时间，SAH 耗费 6s，BVH 耗时 7s，差别并不是很大。因此可能只有在特定的情况中，SAH 才能取得更好的效果。
+
 ## Reference
 
 [1] [GAMES101-现代计算机图形学入门](https://www.bilibili.com/video/BV1X7411F744/?p=8&share_source=copy_web&vd_source=0010cd145c4589a828366dd2f6c17219) - 闫令琪 - bilibili
