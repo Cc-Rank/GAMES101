@@ -131,7 +131,7 @@ sRGB 空间有一个很重要的作用，就是我们用来存储颜色的媒介
 $$
 \begin{aligned}
 L   &= L_a + L_d + Ls\\
-    &= k_a I_a + k_d(I/r^2)max(0, \bm{n} \cdot \bm{l}) + k_s(I/r^2)max(0, \bm{n} \cdot \bm{h})^p
+    &= k_a I_a + k_d(I/r^2)max(0, \boldsymbol{n} \cdot \boldsymbol{l}) + k_s(I/r^2)max(0, \boldsymbol{n} \cdot \boldsymbol{h})^p
  \end{aligned}
 $$
 
