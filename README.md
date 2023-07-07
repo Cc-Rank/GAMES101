@@ -60,7 +60,7 @@ GAMES101 现代计算机图形学笔记与实现
 
 本节从辐射度量学开始讲起，从双向反射分布函数（BRDF）引入了渲染方程的介绍。
 
-然后为了对渲染方程求解，又从蒙特卡洛积分（Monte Carlo Integration）引入了蒙特卡洛路径追踪（Monte Carlo Integration）。
+然后为了对渲染方程求解，又从蒙特卡洛积分（Monte Carlo Integration）引入了蒙特卡洛路径追踪（Monte Carlo Path Tracing）。
 
 最终实现了一个真实感很强的 The Cornell Box。
 
