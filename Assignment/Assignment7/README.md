@@ -17,13 +17,13 @@
 ### 1.1. Radiant Energy and Flux (Power)
 
 > Definition: Radiant energy is the energy of electromagnetic radiation. It is measured in units of joules, and denoted by the symbol:
-> $$
-> Q[j = Joule]
-> $$
+$$
+Q[j = Joule]
+$$
 > Definition: Radiant flux (power) is the energy emitted, reflected, transmitted or received, per unit time.
-> $$
-> \Phi \equiv \frac{dQ}{dt} [W = Watt] [lm = lumen]^*
-> $$
+$$
+\Phi \equiv \frac{dQ}{dt} [W = Watt] [lm = lumen]^*
+$$
 
 Radiant flux 有时候也被叫做 power ，主要用来表示单位时间内的能量。其单位主要是 ***瓦特*** 和 ***流明***。另一种定义方式为，单位时间内其通过的光子的数量。
 
