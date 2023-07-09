@@ -18,11 +18,11 @@
 
 > Definition: Radiant energy is the energy of electromagnetic radiation. It is measured in units of joules, and denoted by the symbol:
 > $$
-Q[j = Joule]
+> Q[j = Joule]
 > $$
 > Definition: Radiant flux (power) is the energy emitted, reflected, transmitted or received, per unit time.
 > $$
-\Phi \equiv \frac{dQ}{dt} [W = Watt] [lm = lumen]^*
+> \Phi \equiv \frac{dQ}{dt} [W = Watt] [lm = lumen]^*
 > $$
 
 Radiant flux 有时候也被叫做 power ，主要用来表示单位时间内的能量。其单位主要是 ***瓦特*** 和 ***流明***。另一种定义方式为，单位时间内其通过的光子的数量。
@@ -70,7 +70,7 @@ $$
 
 这样，对于整个球面积分，就可以得到这个球的立体角度 $4\pi$ ，从而得到验证。
 
-<div align="center"><img src="./Assets/Sphere.png" width = "85%" ></div>
+<div align="center"><img src="./Assets/Sphere.png" width = "75%" ></div>
 
 在后续的概念定义中， $\omega$ 将被用来表示一个单位长度的方向向量，它由 $\theta$ 和 $\phi$ 来唯一确定。
 
@@ -338,3 +338,9 @@ shade(p, wo)
 ```
 
 ![Path Tracing](./Assets/PHOTP_REALISTIC.png "Path Tracing")
+
+## Reference
+
+[1] [GAMES101-现代计算机图形学入门](https://www.bilibili.com/video/BV1X7411F744/?p=8&share_source=copy_web&vd_source=0010cd145c4589a828366dd2f6c17219) - 闫令琪 - bilibili
+
+[2] [Fundamentals of Computer Graphics 4th](https://book.douban.com/subject/26868819/)
