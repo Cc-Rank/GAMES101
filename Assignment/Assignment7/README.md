@@ -17,10 +17,12 @@
 ### 1.1. Radiant Energy and Flux (Power)
 
 > Definition: Radiant energy is the energy of electromagnetic radiation. It is measured in units of joules, and denoted by the symbol:
+
 $$
 Q[j = Joule]
 $$
 > Definition: Radiant flux (power) is the energy emitted, reflected, transmitted or received, per unit time.
+
 $$
 \Phi \equiv \frac{dQ}{dt} [W = Watt] [lm = lumen]^*
 $$
