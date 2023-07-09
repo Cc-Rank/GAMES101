@@ -214,19 +214,3 @@ bool rayTriangleIntersect(const Vector3f& v0, const Vector3f& v1, const Vector3f
 ## 4. 加速光线追踪
 
 真实的渲染场景往往是复杂的，一个场景甚至包含上亿个三角形。以常用的 1920 * 1080 分辨率为例，每个像素通常都需要发射出许多光线，而如果每根光线都要和每一个三角形判断求交，这计算量是难以想象的。这就需要对求交过程进行加速，下一篇文章 [加速光线追踪](https://github.com/Cc-Rank/GAMES101/blob/main/Assignment/Assignment6/README.md) 将详细介绍如何对这些计算过程进行加速。
-
-## 5. 反射与折射
-
-TODO
-
-### 5.1. 反射方向的计算
-
-TODO
-
-### 5.2. 折射方向的计算
-
-TODO
-
-### 5.3. 菲涅耳项(Fresnel Term)
-
-TODO
