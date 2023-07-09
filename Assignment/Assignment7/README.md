@@ -21,6 +21,7 @@
 $$
 Q[j = Joule]
 $$
+
 > Definition: Radiant flux (power) is the energy emitted, reflected, transmitted or received, per unit time.
 
 $$
