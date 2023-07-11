@@ -8,7 +8,7 @@ GAMES101 现代计算机图形学笔记与实现
 
 并以一个简单的三角形为例做了测试。
 
-<img src="./Assignment/Assignment1/Assets/image.png" width = "45%" > $\quad \quad$ <img src="./Assignment/Assignment1/Assets/output.png" width = "45%" >
+<img src="Assignment/Assignment1/Assets/image.png" width = "45%" > $\quad \quad$ <img src="Assignment/Assignment1/Assets/output.png" width = "45%" >
 
 ## Assignment 2: [Triangle and Z-buffering](./Assignment/Assignment2)
 
@@ -18,7 +18,7 @@ GAMES101 现代计算机图形学笔记与实现
 
 同时，这里还对常见的抗锯齿算法做了简单的总结，从走样（Aliasing）到反走样（Anti-Aliasing, AA），包括：超采样反走样（Super Sampling AA）、多采样反走样（Multi-Sampling AA）与时间反走样（Temporal Anti-Aliasing）等。
 
-<img src="./Assignment/Assignment2/Assets/output.png" width = "45%" > $\quad \quad$ <img src="./Assignment/Assignment2/Assets/super_sampling_V2.png" width = "45%" >
+<img src="Assignment/Assignment2/Assets/output.png" width = "45%" > $\quad \quad$ <img src="Assignment/Assignment2/Assets/super_sampling_V2.png" width = "45%" >
 
 ## Assignment 3: [Pipeline and Shading](./Assignment/Assignment3)
 
